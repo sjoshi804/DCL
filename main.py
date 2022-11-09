@@ -128,9 +128,9 @@ if __name__ == '__main__':
     train_data = utils.STL10Pair(root='/home/sjoshi/data', split='train+unlabeled', transform=utils.train_transform, download=True)
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True,
                               drop_last=True)
-    memory_data = utils.STL10Pair(root='data', split='train', transform=utils.test_transform)
+    memory_data = utils.STL10Pair(root='/home/sjoshi/data', split='train', transform=utils.test_transform, download=True)
     memory_loader = DataLoader(memory_data, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True)
-    test_data = utils.STL10Pair(root='data', split='test', transform=utils.test_transform)
+    test_data = utils.STL10Pair(root='/home/sjoshi/data', split='test', transform=utils.test_transform, download=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True)
 
     # model setup and optimizer config
@@ -148,4 +148,4 @@ if __name__ == '__main__':
         train_loss = train(model, train_loader, optimizer, temperature, debiased, tau_plus)
         if epoch % 1 == 0:
             test_acc_1, test_acc_5 = test(model, memory_loader, test_loader)
-            torch.save(model.state_dict(), '/home/sjoshi/DCL/results/model_{}.pth'.format(epoch))
+            torch.save(model.state_dict(), f'/home/sjoshi/DCL/results/model_{tau_plus}_{epoch}.pth')

@@ -69,9 +69,9 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     model_path, batch_size, epochs = args.model_path, args.batch_size, args.epochs
-    train_data = STL10(root='data', split='train', transform=utils.train_transform)
+    train_data = STL10(root='/home/sjoshi/data', split='train', transform=utils.train_transform, download=True)
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=2, pin_memory=True)
-    test_data = STL10(root='data', split='test', transform=utils.test_transform)
+    test_data = STL10(root='/home/sjoshi/data', split='test', transform=utils.test_transform, download=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=True)
 
     model = Net(num_class=len(train_data.classes), pretrained_path=model_path).cuda()
