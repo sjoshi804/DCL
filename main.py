@@ -146,6 +146,6 @@ if __name__ == '__main__':
         os.mkdir('/home/sjoshi/DCL/results')
     for epoch in range(1, epochs + 1):
         train_loss = train(model, train_loader, optimizer, temperature, debiased, tau_plus)
-        if epoch % 1 == 0:
+        if epoch % 25 == 0:
             test_acc_1, test_acc_5 = test(model, memory_loader, test_loader)
             torch.save(model.state_dict(), f'/home/sjoshi/DCL/results/model_{tau_plus}_{epoch}.pth')
