@@ -142,10 +142,10 @@ if __name__ == '__main__':
     print('# Classes: {}'.format(c))
 
     # training loop
-    if not os.path.exists('results'):
-        os.mkdir('results')
+    if not os.path.exists('/home/sjoshi/DCL/results'):
+        os.mkdir('/home/sjoshi/DCL/results')
     for epoch in range(1, epochs + 1):
         train_loss = train(model, train_loader, optimizer, temperature, debiased, tau_plus)
         if epoch % 25 == 0:
             test_acc_1, test_acc_5 = test(model, memory_loader, test_loader)
-            torch.save(model.state_dict(), 'results/model_{}.pth'.format(epoch))
+            torch.save(model.state_dict(), '/home/sjoshi/DCL/results/model_{}.pth'.format(epoch))
