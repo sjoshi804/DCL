@@ -125,7 +125,7 @@ if __name__ == '__main__':
     batch_size, epochs, debiased = args.batch_size, args.epochs,  args.debiased
 
     # data prepare
-    train_data = utils.STL10Pair(root='data', split='train+unlabeled', transform=utils.train_transform)
+    train_data = utils.STL10Pair(root='/home/sjoshi/data', split='train+unlabeled', transform=utils.train_transform, download=True)
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True,
                               drop_last=True)
     memory_data = utils.STL10Pair(root='data', split='train', transform=utils.test_transform)
